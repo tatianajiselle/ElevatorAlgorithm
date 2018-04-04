@@ -5,20 +5,19 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class Elevator{
+public class Elevator {
 
     private int currentFloor; // keeps track of the current floor
     private int destinationFloor; // where the elevator is heading
-
 
     public Queue<Integer> floorPriorityQueue; // a priority queue to track floors
 
     /***************************************************
                         Constructor
      ***************************************************/
-    Elevator(int currentFloor){
+    Elevator(int currentFloor) {
         this.currentFloor = currentFloor;
-        Comparator<Integer> comparator = new FloorPriorityComparator();
+        //Comparator<Integer> comparator = new FloorPriorityComparator();
         this.floorPriorityQueue = new LinkedList<>();
         this.destinationFloor = currentFloor;
     }
@@ -26,10 +25,9 @@ public class Elevator{
     /***************************************************
                 call - adds floor to queue
      ***************************************************/
-    public void call(int floor){
+    public void call(int floor) {
         this.floorPriorityQueue.add(floor);
     }
-
 
     /***************************************************
             run - directs elevator to next floor
@@ -48,19 +46,18 @@ public class Elevator{
             } else {
                 System.out.println("There is nowhere to go! You will remain at the current floor");
             }
-        }
-        else
+        } else
             System.out.println("There is nowhere to go! You will remain at the current floor");
     }
 
     /***************************************************
                         elevator - up
      ***************************************************/
-    public void up(){
+    public void up() {
         printCurrentFloor(this.currentFloor);
         System.out.println();
 
-        for(int i = this.currentFloor+1; i <= this.destinationFloor; i++){
+        for (int i = this.currentFloor + 1; i <= this.destinationFloor; i++) {
             System.out.println("Passing floor: " + i + " going up!");
         }
 
@@ -73,11 +70,11 @@ public class Elevator{
     /***************************************************
                         elevator - down
      ***************************************************/
-    public void down(){
+    public void down() {
         printCurrentFloor(this.currentFloor);
         System.out.println();
 
-        for(int i = this.currentFloor-1; i >= this.destinationFloor; i--){
+        for (int i = this.currentFloor - 1; i >= this.destinationFloor; i--) {
             System.out.println("Passing floor: " + i + " going down!");
         }
 
@@ -90,20 +87,19 @@ public class Elevator{
     /***************************************************
                         Helper Methods
      ***************************************************/
-    public void printCurrentFloor(int currentFloor){
+    public void printCurrentFloor(int currentFloor) {
         System.out.println("Currently on floor: " + currentFloor);
     }
 
-    public void updateCurrentFloor(int destinationFloor){
+    public void updateCurrentFloor(int destinationFloor) {
         this.currentFloor = destinationFloor;
     }
 
-    public boolean isGoingDown(){
+    public boolean isGoingDown() {
         return (this.currentFloor > this.destinationFloor);
     }
 
-    public boolean isGoingUp(){
+    public boolean isGoingUp() {
         return (this.currentFloor < this.destinationFloor);
     }
 }
-
